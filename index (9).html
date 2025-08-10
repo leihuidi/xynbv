@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小亦大王直播一周年庆典</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #ff6b9c;
+            --secondary: #5e63b6;
+            --accent: #ffb74d;
+            --light: #fff9f9;
+            --dark: #2c2c54;
+            --gray: #8d93ab;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff5f7, #f0f4ff);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+        }
+        
+        .header-subtitle {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .anniversary-badge {
+            background: var(--accent);
+            color: var(--dark);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .avatar-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .fans-name {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* 时间线样式 */
+        .timeline-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: calc(50% - 40px);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 40px);
+        }
+        
+        .timeline-content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-date {
+            background: var(--secondary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .timeline-text {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .milestone {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* 视频展示区 */
+        .video-section {
+            padding: 80px 0;
+            background: linear-gradient(120deg, #f8f9ff, #fff0f5);
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        
+        .video-caption {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+        
+        .video-btn {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .video-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .video-btn i {
+            color: var(--secondary);
+            font-size: 18px;
+        }
+        
+        /* 心路历程 */
+        .journey-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .journey-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f9f7ff, #f7f9ff);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            position: relative;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .journey-content::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(94, 99, 182, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .journey-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .journey-text p {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .journey-text p::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        /* 祝福区 */
+        .wishes-section {
+            padding: 80px 0;
+            background: linear-gradient(120deg, #f0f4ff, #fff5f7);
+            text-align: center;
+        }
+        
+        .wishes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .wishes-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            margin-top: 30px;
+            border: 1px solid rgba(255, 107, 156, 0.2);
+        }
+        
+        .wishes-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.8;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .wishes-text::before,
+        .wishes-text::after {
+            content: """;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+        
+        .wishes-text::before {
+            top: -25px;
+            left: -10px;
+        }
+        
+        .wishes-text::after {
+            content: """;
+            bottom: -55px;
+            right: -10px;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-info {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+        }
+        
+        .beian-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .beian-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .journey-content {
+                padding: 30px 20px;
+            }
+            
+            .wishes-box {
+                padding: 30px 20px;
+            }
+            
+            .video-container {
+                border-radius: 10px;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        
+        .dec-1 {
+            top: 10%;
+            left: 10%;
+            font-size: 10rem;
+            color: white;
+            transform: rotate(15deg);
+        }
+        
+        .dec-2 {
+            bottom: 20%;
+            right: 15%;
+            font-size: 8rem;
+            color: white;
+            transform: rotate(-10deg);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            top: -10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="decoration dec-1">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="decoration dec-2">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="container header-content">
+            <div class="avatar-container floating">
+                <img src="yinb.jpg" alt="小亦大王" class="avatar">
+            </div>
+            <h1 class="header-title">小亦大王</h1>
+            <p class="header-subtitle">感谢一路相伴，共同成长的每一个瞬间</p>
+        </div>
+    </header>
+
+    <!-- 成长时间线 -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">成长足迹</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年8月</div>
+                        <h3 class="timeline-title">初次相遇</h3>
+                        <p class="timeline-text">第一次直播，与粉丝们相遇相识，开启直播旅程。</p>
+                        <span class="milestone">起点</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年9月6日</div>
+                        <h3 class="timeline-title">早八直播启程</h3>
+                        <p class="timeline-text">第一次开启早八直播，温柔的风格让大家耳目一新。</p>
+                        <span class="milestone">4800粉丝</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年9月24日</div>
+                        <h3 class="timeline-title">首个嘉年华</h3>
+                        <p class="timeline-text">收获直播生涯第一个嘉年华，成为江西榜第一。</p>
+                        <span class="milestone">重要里程碑</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年11月7日</div>
+                        <h3 class="timeline-title">一百天</h3>
+                        <p class="timeline-text">早上大家都很紧张群里的小伙伴都进行了最高的礼仪。</p>
+                        <span class="milestone">满100天</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年11月22日</div>
+                        <h3 class="timeline-title">粉丝破万</h3>
+                        <p class="timeline-text">粉丝数量突破10,000大关，达成重要成就。</p>
+                        <span class="milestone">10,000粉丝</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年1月</div>
+                        <h3 class="timeline-title">新年新气象</h3>
+                        <p class="timeline-text">新年开播，周边升级</p>
+                        <span class="milestone">14,000粉丝</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年4月</div>
+                        <h3 class="timeline-title">周年新起点</h3>
+                        <p class="timeline-text">迎来直播一周年，粉丝达1.5W人，开启新征程。</p>
+                        <span class="milestone">1.5万粉丝</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频展示区 -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">精彩回顾</h2>
+            <div class="video-container fade-in">
+                <div class="video-wrapper">
+                    <video id="anniversaryVideo" controls>
+                        <source src="https://xiaodd.xiaoyinb.cn/8.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放
+                    </video>
+                </div>
+                <div class="video-controls">
+                    <button class="video-btn" id="playBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="video-btn" id="pauseBtn">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="video-btn" id="muteBtn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                <div class="video-caption">精彩回顾</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 心路历程 -->
+    <section class="journey-section">
+        <div class="container">
+            <h2 class="section-title">心路历程</h2>
+            <div class="journey-content fade-in">
+                <div class="journey-text">
+                    <p>一个迟来的小作文，昨天小也找的时候，我以为还没有决定，没想到直播的时候都出来了。</p>
+                    <p>小亦同学：我们也算认识了小半个月了，每天听着你和我们打打闹闹，成长不期而遇，很荣幸能在今年遇见你。</p>
+                    <p>这是你的第二次生日，也算是我正式的第一次祝你生日快乐，你第一次直播说让我们夸夸你，我绞尽脑汁的思考了半天，发现没有任何一个字词可以完整的贴合你。</p>
+                    <p>你很细心，很宠粉，我们每一次的评论你都会认真回复，这是我在其他主播哪里没有见过的。</p>
+                    <p>最近这一阵很喜欢剪你直播的视频，你竟然说我是黑粉，我白着呢，真的是第一次剪，剪的时候发现一开始录的视频都是你唱歌正经的。</p>
+                    <p>啊啊啊啊啊啊，今天是你第一次开早八直播，不错，起的挺早，今天是9月6号，恭喜你已经4800了。</p>
+                    <p>回到东北的小亦现在都放不开了。</p>
+                    <p>2024.10.21，收到周边了！！！！！我可太喜欢了，小亦好有心啊，嘤嘤嘤嘤，给我感动坏了。</p>
+                    <p>10.29号，最近太忙了，都没咋看直播，今天是我关注你的100天，好有纪念意义啊。</p>
+                    <p>最近要百天了，你又离开了我们的小家了，大家都在准备惊喜。</p>
+                    <p>今天是2024.11.7立冬，要百天了，太激动了，早上大家都很紧张，哈哈哈哈我没有感觉到。</p>
+                    <p>恭喜小亦成立二创组了，不过我的二创，嘻嘻，感觉真的拿不出手。</p>
+                    <p>2024.11.22，恭喜小亦破万了，啊啊啊啊啊，太棒了小亦。</p>
+                    <p>好久没记录了，最近有什么事呢，是小亦嘉年华进晋级赛了，还在群里发了个大红包，我抢到了6.91。</p>
+                    <p>虽然没有晋级，但我们也在13名了，超棒的小亦。</p>
+                    <p>小亦！今天告诉你一个好消息，带着你我期末有一科得了最高分，啊啊啊啊啊，然后就在今天我的奖学金也到了！</p>
+                    <p>升级了啊啊啊啊啊，11级了，嘻嘻，你的新周边浅浅等待一下吧。</p>
+                    <p>新年快乐！小亦，祝你事事顺心，万事如意。</p>
+                    <p>今天是1月10号，第三次收到小亦的新周边了，啊啊啊啊啊开心，真的巨好看。</p>
+                    <p>除夕快乐！小亦。</p>
+                    <p>小亦，新年快乐！事事顺心，万事顺意，一路长虹啊！</p>
+                    <p>不知不觉时隔这么久，摆了几天摊，赚了7米，啊哈哈哈哈哈。</p>
+                    <p>已经好久好久没有记录了，最近也没啥重要的事，除了你休息了小半个月，牌子灰了很久也没啥了。</p>
+                    <p>今天关注小亦一年了！最近有什么事情吗？没错在这之前已经发了新周边！！！！真的是宇宙无敌的期待了！</p>
+                    <p>一周年快乐小亦，这一年里我们都在成长，从去年那个夏天到今年。我们经历了许多有趣的事情，也见证了你的成长，看着你从几百个粉丝，到现在的1.5万粉，真的很为你感到骄傲和高兴。想说的话有许多，所以希望我们明年的夏天我们还会在一起，请继续发光发热吧，我们都会变得很好！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 祝福区 -->
+    <section class="wishes-section">
+        <div class="container">
+            <h2 class="section-title">周年寄语</h2>
+            <div class="wishes-container">
+                <div class="wishes-box fade-in">
+                    <p class="wishes-text">
+                        成长不期而遇，很荣幸能在今年遇见你。希望你每天多点开心，少点烦恼，你很好，你比任何人都要好。从几百个粉丝，到现在的1.5万粉，真的很为你感到骄傲和高兴。请继续发光发热吧，我们都会变得很好！
+                    </p>
+                    <div class="signature">—— 全体小目标</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <p>部署地址：江西 南昌 | 部署IP：39.98.43.212</p>
+                <p>网站仅为庆祝活动使用，无商业用途</p>
+            </div>
+            <p>
+                <a href="http://beian.miit.gov.cn" class="beian-link" target="_blank">辽ICP备2025060032号-1</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // 添加一些装饰动画
+            const decorations = document.querySelectorAll('.decoration');
+            decorations.forEach((dec, index) => {
+                dec.style.animation = `float ${6 + index}s ease-in-out infinite`;
+            });
+            
+            // 视频控制
+            const video = document.getElementById('anniversaryVideo');
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            
+            playBtn.addEventListener('click', () => {
+                video.play();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+            
+            pauseBtn.addEventListener('click', () => {
+                video.pause();
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            });
+            
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted 
+                    ? '<i class="fas fa-volume-mute"></i>' 
+                    : '<i class="fas fa-volume-up"></i>';
+            });
+            
+            // 自动播放视频（静音）
+            setTimeout(() => {
+                video.muted = true;
+                video.play();
+            }, 2000);
+            
+            // 创建彩色纸屑效果
+            function createConfetti() {
+                const colors = ['#ff6b9c', '#5e63b6', '#ffb74d', '#8d93ab'];
+                const container = document.body;
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    
+                    // 随机形状
+                    if (Math.random() > 0.5) {
+                        confetti.style.borderRadius = '50%';
+                    }
+                    
+                    // 随机大小
+                    const size = Math.random() * 10 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // 随机旋转
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    // 动画
+                    const animation = document.createElement('style');
+                    animation.innerHTML = `
+                        @keyframes fall {
+                            0% { top: -10px; transform: rotate(0deg); }
+                            100% { top: 100vh; transform: rotate(${Math.random() * 360}deg); }
+                        }
+                    `;
+                    document.head.appendChild(animation);
+                    
+                    container.appendChild(confetti);
+                    
+                    // 移除元素
+                    setTimeout(() => {
+                        confetti.remove();
+                        animation.remove();
+                    }, 5000);
+                }
+            }
+            
+            // 页面加载时创建彩色纸屑
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
